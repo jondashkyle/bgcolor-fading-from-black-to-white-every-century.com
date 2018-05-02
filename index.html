@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>bgcolor-fading-from-black-to-white-every-century.com</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        background: #fff;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      var year
+
+      now()
+      setInterval(now, 10000)
+
+      function now () {
+        // current year
+        year = new Date()
+        year = year.getFullYear()
+        year = year.toString()
+        year = year.slice(-3)
+
+        // scale
+        year = ( (year - 0) / (100 - 0) ) * (255 - 0) + 0
+        year = Math.floor(year)
+
+        // set the color
+        document.body.style.backgroundColor = 'rgb(' + year + ', ' + year + ', ' + year + ')'
+      }
+    </script>
+  </body>
+</html>
