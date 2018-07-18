@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>bgcolor-fading-from-black-to-white-every-century.com</title>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <style>
       * {
         margin: 0;
@@ -43,6 +45,73 @@
         // set the color
         document.body.style.backgroundColor = 'rgb(' + year + ', ' + year + ', ' + year + ')'
       }
+    </script>
+        <script>
+      var winWidth = window.innerWidth
+
+      setup()
+      setInterval(setup, 1000)
+
+      function resize () {
+        winWidth = window.innerWidth
+        setup()
+      }
+
+      function setup () {
+        var d2 = new Date()
+        var day = "January, 1, " + d2.getFullYear()
+        var d1 = new Date(day)
+        var t2 = d2.getTime()
+        var t1 = d1.getTime()
+        var diff = parseInt((t2-t1)/(24*3600*1000))
+        var scale = ( (diff - 0) / (365 - 0) ) * (winWidth - 5) + 0
+        document.querySelector('div').style.left = scale + 'px'
+      }
+
+      resize()
+      window.addEventListener('resize', resize, false)
+    </script>
+    <script>
+      (function createSetIntervalLink () {
+        var duration = 500
+        var element = createElement()
+        var frame
+
+        window.addEventListener('DOMContentLoaded', handleLoad, false)
+        window.addEventListener('mousemove', handleMouseMove, false)
+
+        function createElement () {
+          var el = document.createElement('a')
+          el.setAttribute('href', 'https://setinterval.zone')
+          el.setAttribute('target', '_blank')
+          el.setAttribute('style', [
+            'text-decoration: none',
+            'padding: 10px',
+            'line-height: 1',
+            'color: currentColor',
+            'position: fixed',
+            'font-size: 15px',
+            'bottom: 0; right: 0',
+            'opacity: 0',
+            'transition: opacity ' + (duration / 2) + 'ms ease-out'
+          ].join(';'))
+          el.innerHTML = '⧗'
+          return el
+        }
+
+        function handleLoad () {
+          var parent = document.body
+          parent.appendChild(element)
+        }
+
+        function handleMouseMove (event) {
+          clearTimeout(frame)
+          if (element.style.opacity === '0') element.style.opacity = 1
+          frame = setTimeout(function () {
+            element.style.opacity = 0
+          }, duration)
+        }
+      })()
     </script>
   </body>
 </html>
